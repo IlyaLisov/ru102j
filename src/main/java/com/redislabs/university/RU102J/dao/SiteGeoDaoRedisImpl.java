@@ -99,7 +99,8 @@ public class SiteGeoDaoRedisImpl implements SiteGeoDao {
             String rankingKey = RedisSchema.getCapacityRankingKey();
             // TODO: Challenge #5: Add the code that populates the scores HashMap...
             for (Site site : sites) {
-                scores.put(site.getId(), pipeline.zscore(rankingKey, String.valueOf(site.getId())));
+                Response<Double> score = pipeline.zscore(rankingKey, String.valueOf(site.getId()));
+                scores.put(site.getId(), score);
             }
             pipeline.sync();
             // END Challenge #5
