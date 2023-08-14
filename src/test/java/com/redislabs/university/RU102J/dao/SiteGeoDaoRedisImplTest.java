@@ -6,7 +6,12 @@ import com.redislabs.university.RU102J.api.Coordinate;
 import com.redislabs.university.RU102J.api.GeoQuery;
 import com.redislabs.university.RU102J.api.MeterReading;
 import com.redislabs.university.RU102J.api.Site;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -16,9 +21,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 public class SiteGeoDaoRedisImplTest {
 
@@ -125,7 +130,6 @@ public class SiteGeoDaoRedisImplTest {
     }
 
     // Challenge #5
-    @Ignore
     @Test
     public void findByGeoWithExcessCapacity() {
         SiteGeoDao siteDao = new SiteGeoDaoRedisImpl(jedisPool);
