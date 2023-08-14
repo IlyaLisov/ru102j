@@ -87,10 +87,9 @@ public class SiteStatsDaoRedisImpl implements SiteStatsDao {
         t.hincrBy(key, SiteStats.countField, 1);
         t.expire(key, weekSeconds);
 
-        CompareAndUpdateScript script = new CompareAndUpdateScript(jedisPool);
-        script.updateIfGreater(t, key, SiteStats.maxWhField, reading.getWhGenerated());
-        script.updateIfLess(t, key, SiteStats.minWhField, reading.getWhGenerated());
-        script.updateIfGreater(t, key, SiteStats.maxCapacityField, getCurrentCapacity(reading));
+        compareAndUpdateScript.updateIfGreater(t, key, SiteStats.maxWhField, reading.getWhGenerated());
+        compareAndUpdateScript.updateIfLess(t, key, SiteStats.minWhField, reading.getWhGenerated());
+        compareAndUpdateScript.updateIfGreater(t, key, SiteStats.maxCapacityField, getCurrentCapacity(reading));
 
         t.exec();
         // END Challenge #3
