@@ -6,7 +6,6 @@ import com.redislabs.university.RU102J.api.MeterReading;
 import com.redislabs.university.RU102J.api.SiteCapacityTuple;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import redis.clients.jedis.Tuple;
 
@@ -17,7 +16,9 @@ import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThan;
 
 public class CapacityDaoRedisImplTest extends JedisDaoTestBase {
 
@@ -71,7 +72,6 @@ public class CapacityDaoRedisImplTest extends JedisDaoTestBase {
     }
 
     // Challenge #4
-    @Ignore
     @Test
     public void getRank() {
         CapacityDao dao = new CapacityDaoRedisImpl(jedisPool);
